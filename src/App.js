@@ -1,5 +1,14 @@
+import { Fragment } from 'react';
+import Container from './global/Container';
+import GlobalStyles from './global/GlobalStyles';
+
 function App() {
-  return <div className='App'></div>;
+  return (
+    <Fragment>
+      <GlobalStyles />
+      <Container></Container>
+    </Fragment>
+  );
 }
 
 export default App;
