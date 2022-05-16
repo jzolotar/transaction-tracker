@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const Container = ({ children }) => {
+const MainContainer = ({ children }) => {
   return <StyledContainer>{children}</StyledContainer>;
 };
 
@@ -10,4 +10,4 @@ const StyledContainer = styled.main`
   margin: 1.875rem auto;
 `;
 
-export default Container;
+export default MainContainer;
