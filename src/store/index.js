@@ -12,10 +12,28 @@ const trackerSlice = createSlice({
   name: 'tracker',
   initialState,
   reducers: {
-    addTransaction(state, actions) {},
-    deleteTransaction(state, actions) {},
-    setConverter(state, actions) {
-      state.converter = actions.payload;
+    setConverter(state, action) {
+      state.converter = action.payload;
+    },
+    addTransaction(state, action) {
+      console.log(state.converter);
+
+      //convert EUR to PLN
+      const newTransaction = {
+        ...action.payload,
+        amountPLN: state.converter * action.payload.amountEUR,
+      };
+      state.transactions.push(newTransaction);
+
+      //update balance
+      state.balance += newTransaction.amountPLN;
+    },
+    deleteTransaction(state, action) {
+      state.transactions = state.transactions.filter(
+        (item) => item.id !== action.payload.id
+      );
+
+      state.balance -= action.payload.amountPLN;
     },
   },
 });
@@ -46,6 +64,5 @@ export const getConverterValue = () => async (dispatch) => {
       return;
     }
   });
-  console.log(response.data.pln);
   dispatch(setConverter(response.data.pln));
 };

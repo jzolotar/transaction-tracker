@@ -1,15 +1,33 @@
 import { StyledBiggestTransaction } from './BiggestTransaction.styled';
+import { useSelector } from 'react-redux';
+import { Fragment } from 'react';
 
 const BiggestTransaction = () => {
+  const transactions = useSelector((state) => state.transactions);
+
+  let max = null;
+  if (transactions.length !== 0) {
+    //find object with biggest price for incomes
+    max = transactions.reduce((prev, current) =>
+      prev.amountPLN > current.amountPLN ? prev : current
+    );
+    console.log(max);
+  }
   return (
     <StyledBiggestTransaction>
       <h2>Biggest Transaction</h2>
       <article>
-        <h3>Name</h3>
-        <div>
-          <p>360PLN</p>
-          <p>360EUR</p>
-        </div>
+        {!max ? (
+          <h3>Add transaction to see this field</h3>
+        ) : (
+          <Fragment>
+            <h3>{max.title}</h3>
+            <div>
+              <p>{max.amountPLN.toFixed(2)}PLN</p>
+              <p>{max.amountEUR.toFixed(2)}EUR</p>
+            </div>
+          </Fragment>
+        )}
       </article>
     </StyledBiggestTransaction>
   );

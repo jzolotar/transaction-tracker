@@ -29,6 +29,7 @@ export const StyledTransactionsList = styled.section`
       padding: 0.5rem 0;
       border-radius: 5px;
       background: #fff;
+      position: relative;
       h3 {
         margin-left: 0.5rem;
         font-weight: 400;
@@ -37,6 +38,17 @@ export const StyledTransactionsList = styled.section`
       p {
         margin-right: 0.5rem;
         font-weight: 700;
+      }
+      button {
+        position: absolute;
+        top: 0;
+        right: -45px;
+        height: 100%;
+        padding: 0.2rem 0.7rem;
+        border-radius: 5px;
+        border: transparent;
+        background-color: red;
+        color: #fff;
       }
     }
   }

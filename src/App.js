@@ -1,4 +1,7 @@
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
+import { getConverterValue, addTransaction } from './store';
+import { useDispatch } from 'react-redux';
+import { v4 as uuid } from 'uuid';
 import Header from './components/Header/Header';
 import TransactionSum from './components/TransactionsSum/TransactionSum';
 import MainContainer from './global/MainContainer';
@@ -7,19 +10,36 @@ import InnerContainer from './global/InnerContainer';
 import BiggestTransaction from './components/BiggestTransaction/BiggestTransaction';
 import TransactionsList from './components/TranscationsList/TranscationsList';
 import TransactionFrom from './components/TransactionForm/TransactionForm';
-import { getConverterValue } from './store';
-import { useDispatch } from 'react-redux';
 
 function App() {
   const dispatch = useDispatch();
   const [transactionName, setTransactionName] = useState('');
   const [transactionAmount, setTransactionAmount] = useState('');
 
+  // get converter value EUR = xPLN
+  useEffect(() => {
+    dispatch(getConverterValue());
+  }, []);
+
+  //form cleanup + validation
   const resetForm = () => {
     setTransactionName('');
     setTransactionAmount('');
   };
 
+  const formValidation = (name, amount) => {
+    if (!name.replace(/\s+/g, '')) {
+      console.log('enter valid name');
+      return;
+    }
+
+    if (!amount) {
+      console.log('enter valid amount');
+      return;
+    }
+  };
+
+  //handlers
   const onChangeNameHandler = (name) => {
     setTransactionName(name);
   };
@@ -28,9 +48,20 @@ function App() {
   };
 
   const onSubmitHandler = (e) => {
-    console.log(+transactionAmount, transactionName);
     e.preventDefault();
-    dispatch(getConverterValue());
+
+    //simple validation
+    formValidation(transactionName, transactionAmount);
+
+    //add transaction
+    dispatch(
+      addTransaction({
+        id: uuid(),
+        title: transactionName,
+        amountEUR: +transactionAmount,
+      })
+    );
+
     resetForm();
   };
 
