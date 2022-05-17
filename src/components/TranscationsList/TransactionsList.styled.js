@@ -7,6 +7,10 @@ export const StyledTransactionsList = styled.section`
   padding: 1rem;
   box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
   background: #a85cf9;
+  @media (min-width: 52.5rem) {
+    overflow: hidden;
+    overflow-y: auto;
+  }
 
   h2 {
     margin-bottom: 1rem;
