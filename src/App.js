@@ -7,13 +7,31 @@ import InnerContainer from './global/InnerContainer';
 import BiggestTransaction from './components/BiggestTransaction/BiggestTransaction';
 import TransactionsList from './components/TranscationsList/TranscationsList';
 import TransactionFrom from './components/TransactionForm/TransactionForm';
+import { getConverterValue } from './store';
+import { useDispatch } from 'react-redux';
 
 function App() {
-  const [transaction, setTransaction] = useState({ name: '', amount: 0 });
+  const dispatch = useDispatch();
+  const [transactionName, setTransactionName] = useState('');
+  const [transactionAmount, setTransactionAmount] = useState('');
 
-  const onChangeHandler = (name, amount) => {};
+  const resetForm = () => {
+    setTransactionName('');
+    setTransactionAmount('');
+  };
+
+  const onChangeNameHandler = (name) => {
+    setTransactionName(name);
+  };
+  const onChangeAmountHandler = (amount) => {
+    setTransactionAmount(amount);
+  };
+
   const onSubmitHandler = (e) => {
+    console.log(+transactionAmount, transactionName);
     e.preventDefault();
+    dispatch(getConverterValue());
+    resetForm();
   };
 
   return (
@@ -27,7 +45,10 @@ function App() {
           <TransactionsList />
           <TransactionFrom
             onSubmitHandler={onSubmitHandler}
-            onChangeHandler={onChangeHandler}
+            onChangeAmountHandler={onChangeAmountHandler}
+            onChangeNameHandler={onChangeNameHandler}
+            name={transactionName}
+            amount={transactionAmount}
           />
         </InnerContainer>
       </MainContainer>
