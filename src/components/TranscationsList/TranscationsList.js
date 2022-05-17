@@ -15,7 +15,7 @@ const TransactionsList = () => {
           {transactions.map((item) => (
             <li key={item.id}>
               <h3>{item.title}</h3>
-              <p>{(+item.amountPLN).toFixed(2)}</p>
+              <p>{(+item.amountPLN).toFixed(2)} PLN</p>
               <button onClick={() => dispatch(deleteTransaction(item))}>
                 X
               </button>

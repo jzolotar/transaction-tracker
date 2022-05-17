@@ -18,6 +18,11 @@ const ExchangeRate = () => {
 };
 
 const StyledExchangeRate = styled.section`
+  background: white;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+
   h2 {
     margin-bottom: 1rem;
     position: relative;
@@ -32,6 +37,13 @@ const StyledExchangeRate = styled.section`
       border: 1px solid #000;
       opacity: 0.4;
     }
+  }
+  h4 {
+    color: #5534a5;
+  }
+
+  p {
+    color: #5534a5;
   }
 `;
 
