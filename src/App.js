@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import Header from './components/Header/Header';
 import TransactionSum from './components/TransactionsSum/TransactionSum';
 import MainContainer from './global/MainContainer';
@@ -9,6 +9,13 @@ import TransactionsList from './components/TranscationsList/TranscationsList';
 import TransactionFrom from './components/TransactionForm/TransactionForm';
 
 function App() {
+  const [transaction, setTransaction] = useState({ name: '', amount: 0 });
+
+  const onChangeHandler = (name, amount) => {};
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Fragment>
       <GlobalStyles />
@@ -18,7 +25,10 @@ function App() {
           <TransactionSum />
           <BiggestTransaction />
           <TransactionsList />
-          <TransactionFrom />
+          <TransactionFrom
+            onSubmitHandler={onSubmitHandler}
+            onChangeHandler={onChangeHandler}
+          />
         </InnerContainer>
       </MainContainer>
     </Fragment>
