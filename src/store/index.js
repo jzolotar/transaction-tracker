@@ -6,6 +6,7 @@ const initialState = {
   transactions: [],
   balance: 0,
   converter: 0,
+  loading: false,
 };
 
 const trackerSlice = createSlice({
@@ -35,6 +36,9 @@ const trackerSlice = createSlice({
 
       state.balance -= action.payload.amountPLN;
     },
+    setLoading(state, action) {
+      state.loading = action.payload;
+    },
   },
 });
 
@@ -42,11 +46,12 @@ const store = configureStore({
   reducer: trackerSlice.reducer,
 });
 
-export const { addTransaction, deleteTransaction, setConverter } =
+export const { addTransaction, deleteTransaction, setConverter, setLoading } =
   trackerSlice.actions;
 export default store;
 
 export const getConverterValue = () => async (dispatch) => {
+  dispatch(setLoading(true));
   const url =
     'https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/eur/pln.json';
 
@@ -65,4 +70,5 @@ export const getConverterValue = () => async (dispatch) => {
     }
   });
   dispatch(setConverter(response.data.pln));
+  dispatch(setLoading(false));
 };

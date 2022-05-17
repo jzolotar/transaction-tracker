@@ -3,10 +3,16 @@ import { useSelector } from 'react-redux';
 
 const ExchangeRate = () => {
   const exchangeRate = useSelector((state) => state.converter);
+  const loading = useSelector((state) => state.loading);
+
   return (
     <StyledExchangeRate>
       <h2>Current exchange rate</h2>
-      <h4>1EUR = {exchangeRate.toFixed(2)}PLN</h4>
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
+        <h4>1EUR = {exchangeRate.toFixed(2)}PLN</h4>
+      )}
     </StyledExchangeRate>
   );
 };
