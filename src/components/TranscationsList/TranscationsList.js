@@ -8,15 +8,21 @@ const TransactionsList = () => {
   return (
     <StyledTransactionsList>
       <h2>Transaction List</h2>
-      <ul>
-        {transactions.map((item) => (
-          <li key={item.id}>
-            <h3>{item.title}</h3>
-            <p>{(+item.amountPLN).toFixed(2)}</p>
-            <button onClick={() => dispatch(deleteTransaction(item))}>X</button>
-          </li>
-        ))}
-      </ul>
+      {transactions.length === 0 ? (
+        <p>Add Transaction to see this section</p>
+      ) : (
+        <ul>
+          {transactions.map((item) => (
+            <li key={item.id}>
+              <h3>{item.title}</h3>
+              <p>{(+item.amountPLN).toFixed(2)}</p>
+              <button onClick={() => dispatch(deleteTransaction(item))}>
+                X
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </StyledTransactionsList>
   );
 };

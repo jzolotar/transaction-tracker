@@ -22,6 +22,10 @@ export const StyledBiggestTransaction = styled.section`
     flex-direction: column;
     align-items: center;
 
+    p {
+      width: 100%;
+    }
+
     h3 {
       margin-top: 0.6rem;
     }
@@ -35,6 +39,7 @@ export const StyledBiggestTransaction = styled.section`
     position: relative;
 
     p {
+      width: unset;
       text-align: center;
       border: 1px solid #333;
       border-radius: 5px;

@@ -18,7 +18,7 @@ const BiggestTransaction = () => {
       <h2>Biggest Transaction</h2>
       <article>
         {!max ? (
-          <h3>Add transaction to see this field</h3>
+          <p>Add Transaction to see this section</p>
         ) : (
           <Fragment>
             <h3>{max.title}</h3>
