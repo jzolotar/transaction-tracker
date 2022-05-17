@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from 'react';
 import { getConverterValue, addTransaction } from './store';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 import Header from './components/Header/Header';
 import TransactionSum from './components/TransactionsSum/TransactionSum';
@@ -10,9 +10,11 @@ import InnerContainer from './global/InnerContainer';
 import BiggestTransaction from './components/BiggestTransaction/BiggestTransaction';
 import TransactionsList from './components/TranscationsList/TranscationsList';
 import TransactionFrom from './components/TransactionForm/TransactionForm';
+import ExchangeRate from './components/ExchangeRate/ExchangeRate';
 
 function App() {
   const dispatch = useDispatch();
+  const converter = useSelector((state) => state.converter);
   const [transactionName, setTransactionName] = useState('');
   const [transactionAmount, setTransactionAmount] = useState('');
 
@@ -74,6 +76,7 @@ function App() {
           <TransactionSum />
           <BiggestTransaction />
           <TransactionsList />
+          <ExchangeRate />
           <TransactionFrom
             onSubmitHandler={onSubmitHandler}
             onChangeAmountHandler={onChangeAmountHandler}
