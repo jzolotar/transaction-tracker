@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledTransactionForm = styled.section`
+  grid-area: form;
   background: #a85cf9;
   border-radius: 10px;
   padding: 1rem;

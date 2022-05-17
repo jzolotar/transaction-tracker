@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledBiggestTransaction = styled.section`
+  grid-area: biggest-transaction;
   background: white;
   border-radius: 10px;
   padding: 1rem;

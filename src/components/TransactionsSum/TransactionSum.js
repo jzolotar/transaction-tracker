@@ -12,12 +12,14 @@ const TransactionSum = () => {
 };
 
 const StyledTransactionSum = styled.section`
+  grid-area: current-sum;
   text-align: left;
   background: #a85cf9;
   color: #fff;
   border-radius: 10px;
   padding: 1rem;
   box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+  grid-area: current-sum;
 
   h1 {
     letter-spacing: 1px;

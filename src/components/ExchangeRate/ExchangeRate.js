@@ -18,6 +18,7 @@ const ExchangeRate = () => {
 };
 
 const StyledExchangeRate = styled.section`
+  grid-area: current-rate;
   background: white;
   border-radius: 10px;
   padding: 1rem;

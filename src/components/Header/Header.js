@@ -6,6 +6,7 @@ const Header = () => {
 
 const StyledHeader = styled.h1`
   text-align: center;
+  grid-area: title;
 `;
 
 export default Header;

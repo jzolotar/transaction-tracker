@@ -10,6 +10,17 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+  @media (min-width: 52.5rem) {
+    max-width: 50rem;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      'current-sum current-rate'
+      'biggest-transaction transaction-list'
+      'form transaction-list';
+  }
 `;
 
 export default InnerContainer;
