@@ -20,15 +20,6 @@ const TransactionsList = () => {
               item={item}
               color={item.amountPLN > 0 ? '#6fdfdf' : '#df6f6f'}
             />
-            // <li key={item.id}>
-            //   <h3>{item.title}</h3>
-            //   <div>
-            //     <p>{(+item.amountPLN).toFixed(2)} PLN</p>
-            //     <button onClick={() => dispatch(deleteTransaction(item))}>
-            //       <IoMdClose size={20} />
-            //     </button>
-            //   </div>
-            // </li>
           ))}
         </ul>
       )}

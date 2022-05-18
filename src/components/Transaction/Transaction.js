@@ -4,13 +4,17 @@ import { deleteTransaction } from '../../store';
 import styled from 'styled-components';
 
 const Transaction = ({ item, color }) => {
-  console.log(color);
   const dispatch = useDispatch();
+
+  const sign = item.amountPLN > 0 ? '+' : '-';
   return (
     <StyledTransaction color={color}>
       <h3>{item.title}</h3>
       <div>
-        <p>{(+item.amountPLN).toFixed(2)} PLN</p>
+        <p>
+          <span>{sign}</span>
+          {Math.abs(item.amountPLN).toFixed(2)} PLN
+        </p>
         <button onClick={() => dispatch(deleteTransaction(item))}>
           <IoMdClose size={20} />
         </button>
