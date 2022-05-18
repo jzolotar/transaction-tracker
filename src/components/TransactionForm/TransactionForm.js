@@ -19,7 +19,9 @@ const TransactionFrom = ({
         <div>
           <label>Title</label>
           <input
+            autoFocus
             type='text'
+            maxLength='10'
             placeholder='Enter title'
             value={name}
             onChange={(event) => onChangeNameHandler(event.target.value)}
@@ -30,6 +32,9 @@ const TransactionFrom = ({
           <label>Amount</label>
           <input
             type='number'
+            min='-1000000'
+            max='1000000'
+            step='0.01'
             placeholder='price in EUR'
             value={amount}
             onChange={(event) => onChangeAmountHandler(event.target.value)}
