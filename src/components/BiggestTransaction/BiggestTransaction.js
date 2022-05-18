@@ -6,12 +6,13 @@ const BiggestTransaction = () => {
   const transactions = useSelector((state) => state.transactions);
 
   let max = null;
+  let sign = '';
   if (transactions.length !== 0) {
-    //find object with biggest price for incomes
+    //find object with biggest transaction
     max = transactions.reduce((prev, current) =>
       prev.amountPLN > current.amountPLN ? prev : current
     );
-    console.log(max);
+    sign = max.amountPLN > 0 ? '+' : '-';
   }
   return (
     <StyledBiggestTransaction>
@@ -23,8 +24,14 @@ const BiggestTransaction = () => {
           <Fragment>
             <h3>{max.title}</h3>
             <div>
-              <p>{max.amountPLN.toFixed(2)}PLN</p>
-              <p>{max.amountEUR.toFixed(2)}EUR</p>
+              <p>
+                <span>{sign}</span>
+                {max.amountPLN.toFixed(2)}PLN
+              </p>
+              <p>
+                <span>{sign}</span>
+                {max.amountEUR.toFixed(2)}EUR
+              </p>
             </div>
           </Fragment>
         )}

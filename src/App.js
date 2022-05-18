@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useState } from 'react';
 import { getConverterValue, addTransaction, setIsFormValid } from './store';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 import Header from './components/Header/Header';
 import TransactionSum from './components/TransactionsSum/TransactionSum';
@@ -22,15 +22,14 @@ function App() {
     dispatch(getConverterValue());
   }, []);
 
-  //form cleanup + validation
+  //form cleanup
   const resetForm = () => {
     setTransactionName('');
     setTransactionAmount('');
   };
-
+  //simple validation
   const isFormValid = (name, amount) => {
     if (!name.replace(/\s+/g, '')) {
-      console.log('enter valid name');
       return false;
     }
 
@@ -52,10 +51,10 @@ function App() {
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    //simple validation
+    //form validation
     if (!isFormValid(transactionName, transactionAmount)) {
       resetForm();
-      //dispatch error
+      //if invalid give error info
       dispatch(setIsFormValid(false));
       return;
     }
@@ -65,6 +64,7 @@ function App() {
     //add transaction
     dispatch(
       addTransaction({
+        //create unique id
         id: uuid(),
         title: transactionName,
         amountEUR: +transactionAmount,

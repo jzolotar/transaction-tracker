@@ -23,7 +23,6 @@ body {
   background-color: #eaeaea;
   font-size: 0.8125rem;
   line-height: 1.4;
-  /* min-height: 100vh; */
 }
 
 h1,

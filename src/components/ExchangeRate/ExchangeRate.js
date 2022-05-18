@@ -2,7 +2,9 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 
 const ExchangeRate = () => {
+  //tracking changes for exchange rate
   const exchangeRate = useSelector((state) => state.converter);
+  //loading state to show content / loader
   const loading = useSelector((state) => state.loading);
 
   return (

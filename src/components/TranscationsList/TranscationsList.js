@@ -1,11 +1,9 @@
 import { StyledTransactionsList } from './TransactionsList.styled';
-import { useSelector, useDispatch } from 'react-redux';
-import { deleteTransaction } from '../../store';
-import { IoMdClose } from 'react-icons/io';
+import { useSelector } from 'react-redux';
+
 import Transaction from '../Transaction/Transaction';
 
 const TransactionsList = () => {
-  const dispatch = useDispatch();
   const transactions = useSelector((state) => state.transactions);
   return (
     <StyledTransactionsList>

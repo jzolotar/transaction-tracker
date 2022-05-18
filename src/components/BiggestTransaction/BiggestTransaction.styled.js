@@ -53,13 +53,5 @@ export const StyledBiggestTransaction = styled.section`
       border-radius: 5px;
       padding: 0.5rem 2rem;
     }
-    /* &::after {
-      position: absolute;
-      top: 0;
-      left: 0;
-      content: '';
-      height: 100%;
-      border: 1px solid red;
-    } */
   }
 `;

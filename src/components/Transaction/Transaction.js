@@ -6,7 +6,9 @@ import styled from 'styled-components';
 const Transaction = ({ item, color }) => {
   const dispatch = useDispatch();
 
+  //to display if transaction is an income or outcome
   const sign = item.amountPLN > 0 ? '+' : '-';
+
   return (
     <StyledTransaction color={color}>
       <h3>{item.title}</h3>

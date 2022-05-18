@@ -21,8 +21,6 @@ const trackerSlice = createSlice({
       state.converter = action.payload;
     },
     addTransaction(state, action) {
-      console.log(state.converter);
-
       //convert EUR to PLN
       const newTransaction = {
         ...action.payload,
@@ -59,6 +57,7 @@ export const {
 } = trackerSlice.actions;
 export default store;
 
+//using thunk to handle converter value for the store
 export const getConverterValue = () => async (dispatch) => {
   dispatch(setLoading(true));
   const url =
