@@ -33,7 +33,7 @@ function App() {
       return false;
     }
 
-    if (!amount) {
+    if (!amount || +amount === 0) {
       console.log('enter valid amount');
       return false;
     }
