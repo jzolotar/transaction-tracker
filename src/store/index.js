@@ -7,12 +7,16 @@ const initialState = {
   balance: 0,
   converter: 0,
   loading: false,
+  isFormValid: true,
 };
 
 const trackerSlice = createSlice({
   name: 'tracker',
   initialState,
   reducers: {
+    setIsFormValid(state, action) {
+      state.isFormValid = action.payload;
+    },
     setConverter(state, action) {
       state.converter = action.payload;
     },
@@ -46,8 +50,13 @@ const store = configureStore({
   reducer: trackerSlice.reducer,
 });
 
-export const { addTransaction, deleteTransaction, setConverter, setLoading } =
-  trackerSlice.actions;
+export const {
+  addTransaction,
+  deleteTransaction,
+  setConverter,
+  setLoading,
+  setIsFormValid,
+} = trackerSlice.actions;
 export default store;
 
 export const getConverterValue = () => async (dispatch) => {

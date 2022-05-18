@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from 'react';
-import { getConverterValue, addTransaction } from './store';
+import { getConverterValue, addTransaction, setIsFormValid } from './store';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 import Header from './components/Header/Header';
@@ -14,7 +14,6 @@ import ExchangeRate from './components/ExchangeRate/ExchangeRate';
 
 function App() {
   const dispatch = useDispatch();
-  const converter = useSelector((state) => state.converter);
   const [transactionName, setTransactionName] = useState('');
   const [transactionAmount, setTransactionAmount] = useState('');
 
@@ -29,16 +28,17 @@ function App() {
     setTransactionAmount('');
   };
 
-  const formValidation = (name, amount) => {
+  const isFormValid = (name, amount) => {
     if (!name.replace(/\s+/g, '')) {
       console.log('enter valid name');
-      return;
+      return false;
     }
 
     if (!amount) {
       console.log('enter valid amount');
-      return;
+      return false;
     }
+    return true;
   };
 
   //handlers
@@ -53,7 +53,14 @@ function App() {
     e.preventDefault();
 
     //simple validation
-    formValidation(transactionName, transactionAmount);
+    if (!isFormValid(transactionName, transactionAmount)) {
+      resetForm();
+      //dispatch error
+      dispatch(setIsFormValid(false));
+      return;
+    }
+
+    console.log(isFormValid(transactionName, transactionAmount));
 
     //add transaction
     dispatch(
@@ -63,7 +70,7 @@ function App() {
         amountEUR: +transactionAmount,
       })
     );
-
+    dispatch(setIsFormValid(true));
     resetForm();
   };
 

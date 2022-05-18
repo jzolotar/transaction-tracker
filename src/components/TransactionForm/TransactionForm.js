@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { StyledTransactionForm } from './TranscationFrom.styled';
 
 const TransactionFrom = ({
@@ -7,8 +8,11 @@ const TransactionFrom = ({
   name,
   amount,
 }) => {
+  //check if form is valid, pass props to styled component to display errors
+  const isFormValid = useSelector((state) => state.isFormValid);
+
   return (
-    <StyledTransactionForm>
+    <StyledTransactionForm valid={isFormValid}>
       <h2>Add new transaction</h2>
 
       <form onSubmit={onSubmitHandler}>

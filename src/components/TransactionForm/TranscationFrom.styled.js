@@ -37,9 +37,14 @@ export const StyledTransactionForm = styled.section`
       input {
         width: 100%;
         border-radius: 0.3125rem;
-        border: transparent;
+        border: 3px solid
+          ${({ valid }) => (!valid ? '#CF3333;' : 'transparent')};
         padding: 0.2rem 0;
         padding-left: 0.5rem;
+
+        ::placeholder {
+          color: ${({ valid }) => (!valid ? '#df6f6f;' : '#333')};
+        }
       }
     }
 
