@@ -26,6 +26,7 @@ export const StyledBiggestTransaction = styled.section`
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1rem;
 
     p {
       width: 100%;
@@ -40,7 +41,8 @@ export const StyledBiggestTransaction = styled.section`
   div {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 1rem;
     align-items: center;
     position: relative;
 

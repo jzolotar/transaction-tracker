@@ -6,7 +6,10 @@ const TransactionSum = () => {
   return (
     <StyledTransactionSum>
       <h4>Current Sum:</h4>
-      <h1>{+balance.toFixed(2)} PLN</h1>
+      <div>
+        <h1>{+balance.toFixed(2)}</h1>
+        <h1>PLN</h1>
+      </div>
     </StyledTransactionSum>
   );
 };
@@ -21,16 +24,26 @@ const StyledTransactionSum = styled.section`
   box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
   grid-area: current-sum;
 
-  h1 {
-    letter-spacing: 1px;
-    font-weight: 700;
-    font-size: 1.9rem;
-    color: #6fdfdf;
-  }
-
   h4 {
+    display: inline-block;
     color: #000;
     font-weight: 600;
+  }
+
+  div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    h1 {
+      letter-spacing: 1px;
+      font-weight: 700;
+      font-size: 1.9rem;
+      color: #6fdfdf;
+      min-width: auto;
+      max-width: 70%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 `;
 

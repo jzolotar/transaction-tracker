@@ -1,6 +1,7 @@
 import { StyledTransactionsList } from './TransactionsList.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteTransaction } from '../../store';
+import { IoMdClose } from 'react-icons/io';
 
 const TransactionsList = () => {
   const dispatch = useDispatch();
@@ -15,10 +16,12 @@ const TransactionsList = () => {
           {transactions.map((item) => (
             <li key={item.id}>
               <h3>{item.title}</h3>
-              <p>{(+item.amountPLN).toFixed(2)} PLN</p>
-              <button onClick={() => dispatch(deleteTransaction(item))}>
-                X
-              </button>
+              <div>
+                <p>{(+item.amountPLN).toFixed(2)} PLN</p>
+                <button onClick={() => dispatch(deleteTransaction(item))}>
+                  <IoMdClose size={20} />
+                </button>
+              </div>
             </li>
           ))}
         </ul>

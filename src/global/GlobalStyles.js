@@ -19,10 +19,11 @@ html {
 
 body {
   font-family: 'Lato', sans-serif;
-  background-color: #f7f7f7;
+
+  background-color: #eaeaea;
   font-size: 0.8125rem;
   line-height: 1.4;
-  min-height: 100vh;
+  /* min-height: 100vh; */
 }
 
 h1,

@@ -52,23 +52,32 @@ export const StyledTransactionsList = styled.section`
         color: #6fdfdf;
       }
 
-      p {
-        margin-right: 0.5rem;
-        font-weight: 700;
-        color: #a85cf9;
-        color: #5534a5;
-        color: #6fdfdf;
-      }
-      button {
-        position: absolute;
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        p {
+          margin-right: 0.5rem;
+          font-weight: 700;
+          color: #a85cf9;
+          color: #5534a5;
+          color: #6fdfdf;
+        }
+        button {
+          /* position: absolute;
         top: 0;
         right: -45px;
-        height: 100%;
-        padding: 0.2rem 0.7rem;
-        border-radius: 5px;
-        border: transparent;
-        background-color: red;
-        color: #fff;
+        height: 100%; */
+          width: 25px;
+          height: auto;
+          border: none;
+          background-color: transparent;
+          color: #fff;
+
+          &:hover {
+            color: red;
+          }
+        }
       }
     }
   }
