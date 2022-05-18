@@ -15,7 +15,7 @@ const StyledContainer = styled.div`
     max-width: 50rem;
 
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 352);
     grid-template-rows: 90px 220px 220px;
     grid-template-areas:
       'current-sum current-rate'
