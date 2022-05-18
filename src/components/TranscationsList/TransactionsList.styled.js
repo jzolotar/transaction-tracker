@@ -36,49 +36,5 @@ export const StyledTransactionsList = styled.section`
     display: flex;
     flex-direction: column;
     gap: 0.9rem;
-
-    li {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0.5rem 0;
-      border-radius: 5px;
-      background: #fff;
-      background-color: #5534a5;
-      position: relative;
-      h3 {
-        margin-left: 0.5rem;
-        font-weight: 400;
-        color: #6fdfdf;
-      }
-
-      div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        p {
-          margin-right: 0.5rem;
-          font-weight: 700;
-          color: #a85cf9;
-          color: #5534a5;
-          color: #6fdfdf;
-        }
-        button {
-          /* position: absolute;
-        top: 0;
-        right: -45px;
-        height: 100%; */
-          width: 25px;
-          height: auto;
-          border: none;
-          background-color: transparent;
-          color: #fff;
-
-          &:hover {
-            color: red;
-          }
-        }
-      }
-    }
   }
 `;
