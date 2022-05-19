@@ -19,23 +19,22 @@ const Transaction = ({ item, color }) => {
     <StyledTransaction color={color}>
       <h3>{item.title}</h3>
       <div>
-        <p>
-          <NumberFormat
-            value={transactionValue}
-            displayType={'text'}
-            thousandSeparator={true}
-            prefix={''}
-            renderText={(transactionValue) => (
-              <p>
-                <span>{sign}</span>
-                {transactionValue} {currency}
-              </p>
-            )}
-          />
+        <NumberFormat
+          value={transactionValue}
+          displayType={'text'}
+          thousandSeparator={true}
+          prefix={''}
+          renderText={(transactionValue) => (
+            <p>
+              <span>{sign}</span>
+              {transactionValue} {currency}
+            </p>
+          )}
+        />
 
-          {/* {currency === 'PLN' && `${Math.abs(item.amountPLN).toFixed(2)} PLN`}
+        {/* {currency === 'PLN' && `${Math.abs(item.amountPLN).toFixed(2)} PLN`}
           {currency === 'EUR' && `${Math.abs(item.amountEUR).toFixed(2)} EUR`} */}
-        </p>
+
         <button onClick={() => dispatch(deleteTransaction(item))}>
           <IoMdClose size={20} />
         </button>
@@ -55,6 +54,13 @@ const StyledTransaction = styled.li`
   background: #fff;
   background-color: #5534a5;
   position: relative;
+  cursor: pointer;
+  transition: transform 150ms ease-in-out;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+      0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06);
+  }
   h3 {
     margin-left: 0.5rem;
     font-weight: 400;

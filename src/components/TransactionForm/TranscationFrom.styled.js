@@ -51,13 +51,20 @@ export const StyledTransactionForm = styled.section`
     button {
       margin-top: 0.25rem;
       border-radius: 0.3125rem;
-      border: transparent;
+      border: 3px solid transparent;
       padding: 0.45rem 1rem;
       letter-spacing: 0.8px;
       background-color: #c4ddff;
       font-weight: 600;
       background-color: #5534a5;
       color: #6fdfdf;
+      font-size: 0.95rem;
+      transition: 0.5s;
+      &:hover {
+        border: 3px solid #f4f4f4f4;
+        background-color: #6fdfdf;
+        color: #f4f4f4f4;
+      }
     }
   }
 `;

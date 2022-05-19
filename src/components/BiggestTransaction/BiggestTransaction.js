@@ -5,7 +5,6 @@ import NumberFormat from 'react-number-format';
 
 const BiggestTransaction = () => {
   const transactions = useSelector((state) => state.transactions);
-  const currency = useSelector((state) => state.currency);
 
   let max = null;
   let sign = '';

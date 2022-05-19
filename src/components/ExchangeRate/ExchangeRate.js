@@ -43,10 +43,12 @@ const StyledExchangeRate = styled.section`
   }
   h4 {
     color: #5534a5;
+    font-size: 0.9rem;
   }
 
   p {
     color: #5534a5;
+    font-size: 0.9rem;
   }
 `;
 

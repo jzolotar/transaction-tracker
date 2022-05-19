@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrency } from '../../store';
 
@@ -27,6 +26,7 @@ const StyledButton = styled.button`
   color: #a85cf9;
   font-weight: 700;
   font-size: 1.7rem;
+  transition: 0.5s;
 
   &:hover {
     background-color: #6fdfdf;
