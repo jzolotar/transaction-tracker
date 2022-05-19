@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import CurrencyBtn from '../CurrencyBtn/CurrencyBtn';
+import NumberFormat from 'react-number-format';
 
 const TransactionSum = () => {
   const balance = useSelector((state) => state.balance);
@@ -14,7 +15,14 @@ const TransactionSum = () => {
       <h4>Current Sum:</h4>
       <div>
         <CurrencyBtn />
-        <h1>{value}</h1>
+        <NumberFormat
+          value={value}
+          displayType={'text'}
+          thousandSeparator={true}
+          prefix={''}
+          renderText={(value) => <h1>{value}</h1>}
+        />
+        {/* <h1>{value}</h1> */}
       </div>
     </StyledTransactionSum>
   );

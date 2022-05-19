@@ -1,9 +1,11 @@
 import { StyledBiggestTransaction } from './BiggestTransaction.styled';
 import { useSelector } from 'react-redux';
 import { Fragment } from 'react';
+import NumberFormat from 'react-number-format';
 
 const BiggestTransaction = () => {
   const transactions = useSelector((state) => state.transactions);
+  const currency = useSelector((state) => state.currency);
 
   let max = null;
   let sign = '';
@@ -24,14 +26,30 @@ const BiggestTransaction = () => {
           <Fragment>
             <h3>{max.title}</h3>
             <div>
-              <p>
-                <span>{sign}</span>
-                {Math.abs(max.amountPLN).toFixed(2)}PLN
-              </p>
-              <p>
-                <span>{sign}</span>
-                {Math.abs(max.amountEUR).toFixed(2)}EUR
-              </p>
+              <NumberFormat
+                value={Math.abs(max.amountPLN).toFixed(2)}
+                displayType={'text'}
+                thousandSeparator={true}
+                prefix={''}
+                renderText={(value) => (
+                  <p>
+                    <span>{sign}</span>
+                    {value} PLN
+                  </p>
+                )}
+              />
+              <NumberFormat
+                value={Math.abs(max.amountEUR).toFixed(2)}
+                displayType={'text'}
+                thousandSeparator={true}
+                prefix={''}
+                renderText={(value) => (
+                  <p>
+                    <span>{sign}</span>
+                    {value} EUR
+                  </p>
+                )}
+              />
             </div>
           </Fragment>
         )}

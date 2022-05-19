@@ -52,6 +52,8 @@ export const StyledBiggestTransaction = styled.section`
       border: 1px solid #333;
       border-radius: 5px;
       padding: 0.5rem 2rem;
+      background: #6fdfdf;
+      font-weight: 600;
     }
   }
 `;

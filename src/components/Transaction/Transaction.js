@@ -2,6 +2,7 @@ import { IoMdClose } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteTransaction } from '../../store';
 import styled from 'styled-components';
+import NumberFormat from 'react-number-format';
 
 const Transaction = ({ item, color }) => {
   const dispatch = useDispatch();
@@ -9,16 +10,31 @@ const Transaction = ({ item, color }) => {
 
   // display if transaction is an income or outcome
   const sign = item.amountPLN > 0 ? '+' : '-';
+  const transactionValue =
+    currency === 'PLN'
+      ? Math.abs(item.amountPLN).toFixed(2)
+      : Math.abs(item.amountEUR).toFixed(2);
 
   return (
     <StyledTransaction color={color}>
       <h3>{item.title}</h3>
       <div>
         <p>
-          <span>{sign}</span>
+          <NumberFormat
+            value={transactionValue}
+            displayType={'text'}
+            thousandSeparator={true}
+            prefix={''}
+            renderText={(transactionValue) => (
+              <p>
+                <span>{sign}</span>
+                {transactionValue} {currency}
+              </p>
+            )}
+          />
 
-          {currency === 'PLN' && `${Math.abs(item.amountPLN).toFixed(2)} PLN`}
-          {currency === 'EUR' && `${Math.abs(item.amountEUR).toFixed(2)} EUR`}
+          {/* {currency === 'PLN' && `${Math.abs(item.amountPLN).toFixed(2)} PLN`}
+          {currency === 'EUR' && `${Math.abs(item.amountEUR).toFixed(2)} EUR`} */}
         </p>
         <button onClick={() => dispatch(deleteTransaction(item))}>
           <IoMdClose size={20} />
