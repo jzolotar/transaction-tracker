@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
+import CurrencyBtn from '../CurrencyBtn/CurrencyBtn';
 
 const TransactionSum = () => {
   const balance = useSelector((state) => state.balance);
@@ -8,7 +9,7 @@ const TransactionSum = () => {
       <h4>Current Sum:</h4>
       <div>
         <h1>{+balance.toFixed(2)}</h1>
-        <h1>PLN</h1>
+        <CurrencyBtn />
       </div>
     </StyledTransactionSum>
   );
@@ -25,15 +26,17 @@ const StyledTransactionSum = styled.section`
   grid-area: current-sum;
 
   h4 {
-    display: inline-block;
+    /* display: inline-block; */
     color: #000;
     font-weight: 600;
   }
 
   div {
-    display: flex;
+    /* display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: center; */
+    position: relative;
+
     h1 {
       letter-spacing: 1px;
       font-weight: 700;
