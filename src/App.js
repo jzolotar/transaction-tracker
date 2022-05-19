@@ -71,7 +71,6 @@ function App() {
     }
 
     if (!amount || +amount === 0) {
-      console.log('enter valid amount');
       return false;
     }
     return true;
