@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const initialState = {
   transactions: [],
-  balance: 0,
+  balance: { pln: 0, eur: 0 },
   converter: 0,
   loading: false,
   isFormValid: true,
@@ -30,14 +30,16 @@ const trackerSlice = createSlice({
       state.transactions.push(newTransaction);
 
       //update balance
-      state.balance += newTransaction.amountPLN;
+      state.balance.pln += newTransaction.amountPLN;
+      state.balance.eur += newTransaction.amountEUR;
     },
     deleteTransaction(state, action) {
       state.transactions = state.transactions.filter(
         (item) => item.id !== action.payload.id
       );
 
-      state.balance -= action.payload.amountPLN;
+      state.balance.pln -= action.payload.amountPLN;
+      state.balance.eur -= action.payload.amountEUR;
     },
     setLoading(state, action) {
       state.loading = action.payload;
@@ -45,9 +47,12 @@ const trackerSlice = createSlice({
     setTransactions(state, action) {
       state.transactions = action.payload;
     },
-    setBalance(state) {
-      const list = state.transactions;
-      state.balance = list.reduce((value, item) => value + item.amountPLN, 0);
+    setBalance(state, action) {
+      // const list = state.transactions;
+      // const key = state.currency === 'PLN' ? 'amountPLN' : 'amountEUR';
+
+      // state.balance = list.reduce((value, item) => value + item[key], 0);
+      state.balance = action.payload;
     },
     setCurrency(state, action) {
       state.currency = action.payload;

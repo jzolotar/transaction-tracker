@@ -1,12 +1,13 @@
 import { IoMdClose } from 'react-icons/io';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteTransaction } from '../../store';
 import styled from 'styled-components';
 
 const Transaction = ({ item, color }) => {
   const dispatch = useDispatch();
+  const currency = useSelector((store) => store.currency);
 
-  //to display if transaction is an income or outcome
+  // display if transaction is an income or outcome
   const sign = item.amountPLN > 0 ? '+' : '-';
 
   return (
@@ -15,7 +16,9 @@ const Transaction = ({ item, color }) => {
       <div>
         <p>
           <span>{sign}</span>
-          {Math.abs(item.amountPLN).toFixed(2)} PLN
+
+          {currency === 'PLN' && `${Math.abs(item.amountPLN).toFixed(2)} PLN`}
+          {currency === 'EUR' && `${Math.abs(item.amountEUR).toFixed(2)} EUR`}
         </p>
         <button onClick={() => dispatch(deleteTransaction(item))}>
           <IoMdClose size={20} />

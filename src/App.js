@@ -5,6 +5,7 @@ import {
   setIsFormValid,
   setTransactions,
   setBalance,
+  setCurrency,
 } from './store';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
@@ -20,7 +21,10 @@ import ExchangeRate from './components/ExchangeRate/ExchangeRate';
 
 function App() {
   const dispatch = useDispatch();
+
+  const currency = useSelector((state) => state.currency);
   const transactions = useSelector((state) => state.transactions);
+  const balance = useSelector((state) => state.balance);
 
   const [transactionName, setTransactionName] = useState('');
   const [transactionAmount, setTransactionAmount] = useState('');
@@ -29,18 +33,31 @@ function App() {
     // get converter value EUR = xPLN
     dispatch(getConverterValue());
 
-    //check if localStorage has data, if it has, dispatch action to the store
+    //check if localStorage has data, if it has, dispatch actions to the store
     const localData = JSON.parse(localStorage.getItem('transactions'));
+    const localCurrency = JSON.parse(localStorage.getItem('currency'));
+    const localBalance = JSON.parse(localStorage.getItem('balance'));
     if (localData) {
       dispatch(setTransactions(localData));
-      dispatch(setBalance());
+      dispatch(setCurrency(localCurrency));
+      dispatch(setBalance(localBalance));
     }
   }, []);
 
-  // send new transactions list to localStorage whenever it has changed
+  // send transactions list to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem('transactions', JSON.stringify(transactions));
   }, [transactions]);
+
+  // send  currency to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('currency', JSON.stringify(currency));
+  }, [currency]);
+
+  // send  balance to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('balance', JSON.stringify(balance));
+  }, [balance]);
 
   //form cleanup
   const resetForm = () => {

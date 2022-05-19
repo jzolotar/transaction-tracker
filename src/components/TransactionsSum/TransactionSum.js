@@ -4,12 +4,17 @@ import CurrencyBtn from '../CurrencyBtn/CurrencyBtn';
 
 const TransactionSum = () => {
   const balance = useSelector((state) => state.balance);
+  const currency = useSelector((state) => state.currency);
+
+  const value =
+    currency === 'PLN' ? balance.pln.toFixed(2) : balance.eur.toFixed(2);
+
   return (
     <StyledTransactionSum>
       <h4>Current Sum:</h4>
       <div>
         <CurrencyBtn />
-        <h1>{+balance.toFixed(2)}</h1>
+        <h1>{value}</h1>
       </div>
     </StyledTransactionSum>
   );
