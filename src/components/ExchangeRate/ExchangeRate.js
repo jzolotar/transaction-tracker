@@ -2,19 +2,12 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 
 const ExchangeRate = () => {
-  //tracking changes for exchange rate
   const exchangeRate = useSelector((state) => state.converter);
-  //loading state to show content / loader
-  const loading = useSelector((state) => state.loading);
 
   return (
     <StyledExchangeRate>
       <h2>Current exchange rate</h2>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <h4>1EUR = {exchangeRate.toFixed(2)}PLN</h4>
-      )}
+      <h4>1EUR = {exchangeRate.toFixed(2)}PLN</h4>
     </StyledExchangeRate>
   );
 };

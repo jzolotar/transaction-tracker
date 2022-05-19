@@ -19,6 +19,7 @@ import BiggestTransaction from './components/BiggestTransaction/BiggestTransacti
 import TransactionsList from './components/TranscationsList/TranscationsList';
 import TransactionFrom from './components/TransactionForm/TransactionForm';
 import ExchangeRate from './components/ExchangeRate/ExchangeRate';
+import { Loader } from './global/Loader';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,8 @@ function App() {
   const transactions = useSelector((state) => state.transactions);
   const balance = useSelector((state) => state.balance);
   const converter = useSelector((state) => state.converter);
+  //loading state to show content / loader
+  const loading = useSelector((state) => state.loading);
 
   const [transactionName, setTransactionName] = useState('');
   const [transactionAmount, setTransactionAmount] = useState('');
@@ -122,19 +125,24 @@ function App() {
       <GlobalStyles />
       <MainContainer>
         <Header />
-        <InnerContainer>
-          <TransactionSum />
-          <BiggestTransaction />
-          <TransactionsList />
-          <ExchangeRate />
-          <TransactionFrom
-            onSubmitHandler={onSubmitHandler}
-            onChangeAmountHandler={onChangeAmountHandler}
-            onChangeNameHandler={onChangeNameHandler}
-            name={transactionName}
-            amount={transactionAmount}
-          />
-        </InnerContainer>
+
+        {loading ? (
+          <Loader />
+        ) : (
+          <InnerContainer>
+            <TransactionSum />
+            <BiggestTransaction />
+            <TransactionsList />
+            <ExchangeRate />
+            <TransactionFrom
+              onSubmitHandler={onSubmitHandler}
+              onChangeAmountHandler={onChangeAmountHandler}
+              onChangeNameHandler={onChangeNameHandler}
+              name={transactionName}
+              amount={transactionAmount}
+            />
+          </InnerContainer>
+        )}
       </MainContainer>
     </Fragment>
   );
