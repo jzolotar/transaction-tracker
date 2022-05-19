@@ -26,11 +26,11 @@ const BiggestTransaction = () => {
             <div>
               <p>
                 <span>{sign}</span>
-                {max.amountPLN.toFixed(2)}PLN
+                {Math.abs(max.amountPLN).toFixed(2)}PLN
               </p>
               <p>
                 <span>{sign}</span>
-                {max.amountEUR.toFixed(2)}EUR
+                {Math.abs(max.amountEUR).toFixed(2)}EUR
               </p>
             </div>
           </Fragment>
