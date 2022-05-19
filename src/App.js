@@ -1,6 +1,12 @@
 import { Fragment, useEffect, useState } from 'react';
-import { getConverterValue, addTransaction, setIsFormValid } from './store';
-import { useDispatch } from 'react-redux';
+import {
+  getConverterValue,
+  addTransaction,
+  setIsFormValid,
+  setTransactions,
+  setBalance,
+} from './store';
+import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 import Header from './components/Header/Header';
 import TransactionSum from './components/TransactionsSum/TransactionSum';
@@ -14,13 +20,27 @@ import ExchangeRate from './components/ExchangeRate/ExchangeRate';
 
 function App() {
   const dispatch = useDispatch();
+  const transactions = useSelector((state) => state.transactions);
+
   const [transactionName, setTransactionName] = useState('');
   const [transactionAmount, setTransactionAmount] = useState('');
 
-  // get converter value EUR = xPLN
   useEffect(() => {
+    // get converter value EUR = xPLN
     dispatch(getConverterValue());
+
+    //check if localStorage has data, if it has, dispatch action to the store
+    const localData = JSON.parse(localStorage.getItem('transactions'));
+    if (localData) {
+      dispatch(setTransactions(localData));
+      dispatch(setBalance());
+    }
   }, []);
+
+  // send new transactions list to localStorage whenever it has changed
+  useEffect(() => {
+    localStorage.setItem('transactions', JSON.stringify(transactions));
+  }, [transactions]);
 
   //form cleanup
   const resetForm = () => {

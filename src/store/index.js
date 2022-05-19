@@ -41,6 +41,13 @@ const trackerSlice = createSlice({
     setLoading(state, action) {
       state.loading = action.payload;
     },
+    setTransactions(state, action) {
+      state.transactions = action.payload;
+    },
+    setBalance(state) {
+      const list = state.transactions;
+      state.balance = list.reduce((value, item) => value + item.amountPLN, 0);
+    },
   },
 });
 
@@ -54,6 +61,8 @@ export const {
   setConverter,
   setLoading,
   setIsFormValid,
+  setTransactions,
+  setBalance,
 } = trackerSlice.actions;
 export default store;
 
