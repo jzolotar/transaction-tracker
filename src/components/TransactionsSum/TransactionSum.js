@@ -8,8 +8,8 @@ const TransactionSum = () => {
     <StyledTransactionSum>
       <h4>Current Sum:</h4>
       <div>
-        <h1>{+balance.toFixed(2)}</h1>
         <CurrencyBtn />
+        <h1>{+balance.toFixed(2)}</h1>
       </div>
     </StyledTransactionSum>
   );
@@ -29,23 +29,24 @@ const StyledTransactionSum = styled.section`
     /* display: inline-block; */
     color: #000;
     font-weight: 600;
+    margin-bottom: 0.5rem;
   }
 
   div {
-    /* display: flex;
-    justify-content: flex-start;
-    align-items: center; */
-    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
 
     h1 {
       letter-spacing: 1px;
       font-weight: 700;
       font-size: 1.9rem;
       color: #6fdfdf;
-      min-width: auto;
-      max-width: 70%;
+      /* min-width: auto;
+      max-width: 100%; */
+      padding-left: 0.5rem;
       overflow: hidden;
       text-overflow: ellipsis;
+      position: relative;
     }
   }
 `;

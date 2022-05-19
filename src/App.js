@@ -71,13 +71,13 @@ function App() {
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    //form validation
-    if (!isFormValid(transactionName, transactionAmount)) {
-      resetForm();
-      //if invalid give error info
-      dispatch(setIsFormValid(false));
-      return;
-    }
+    // //form validation
+    // if (!isFormValid(transactionName, transactionAmount)) {
+    //   resetForm();
+    //   //if invalid give error info
+    //   dispatch(setIsFormValid(false));
+    //   return;
+    // }
 
     console.log(isFormValid(transactionName, transactionAmount));
 

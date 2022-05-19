@@ -16,7 +16,7 @@ const StyledContainer = styled.div`
 
     display: grid;
     grid-template-columns: repeat(2, 352px);
-    grid-template-rows: 90px 220px 220px;
+    grid-template-rows: 100px 220px 220px;
     grid-template-areas:
       'current-sum current-rate'
       'biggest-transaction transaction-list'
