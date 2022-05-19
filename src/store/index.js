@@ -57,6 +57,18 @@ const trackerSlice = createSlice({
     setCurrency(state, action) {
       state.currency = action.payload;
     },
+    updateTransactions(state, action) {
+      const newValue = action.payload;
+      state.transactions = state.transactions.map((item) => {
+        // console.log({ ...item, amountPLN: item.amountEUR * newValue });
+        return { ...item, amountPLN: item.amountEUR * newValue };
+      });
+
+      state.balance.pln = state.transactions.reduce(
+        (value, transaction) => value + transaction.amountPLN,
+        0
+      );
+    },
   },
 });
 
@@ -73,6 +85,7 @@ export const {
   setTransactions,
   setBalance,
   setCurrency,
+  updateTransactions,
 } = trackerSlice.actions;
 export default store;
 

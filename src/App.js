@@ -6,6 +6,7 @@ import {
   setTransactions,
   setBalance,
   setCurrency,
+  updateTransactions,
 } from './store';
 import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
@@ -25,6 +26,7 @@ function App() {
   const currency = useSelector((state) => state.currency);
   const transactions = useSelector((state) => state.transactions);
   const balance = useSelector((state) => state.balance);
+  const converter = useSelector((state) => state.converter);
 
   const [transactionName, setTransactionName] = useState('');
   const [transactionAmount, setTransactionAmount] = useState('');
@@ -33,7 +35,7 @@ function App() {
     // get converter value EUR = xPLN
     dispatch(getConverterValue());
 
-    //check if localStorage has data, if it has, dispatch actions to the store
+    //check if localStorage has data, if it has, dispatch actions to load saved data
     const localData = JSON.parse(localStorage.getItem('transactions'));
     const localCurrency = JSON.parse(localStorage.getItem('currency'));
     const localBalance = JSON.parse(localStorage.getItem('balance'));
@@ -58,6 +60,11 @@ function App() {
   useEffect(() => {
     localStorage.setItem('balance', JSON.stringify(balance));
   }, [balance]);
+
+  //update PLN amount in existing transactions if exchange rate changes
+  useEffect(() => {
+    dispatch(updateTransactions(converter));
+  }, [converter, dispatch]);
 
   //form cleanup
   const resetForm = () => {
