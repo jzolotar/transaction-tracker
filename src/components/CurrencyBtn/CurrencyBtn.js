@@ -1,15 +1,18 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrency } from '../../store';
+
 import styled from 'styled-components';
 
 const CurrencyBtn = () => {
-  const [data, setData] = useState('PLN');
+  const currency = useSelector((state) => state.currency);
+  const dispatch = useDispatch();
 
-  const onClickHandler = () => {
-    setData('');
-  };
   return (
-    <StyledButton onClick={onClickHandler}>
-      {data === 'PLN' ? 'PLN' : 'EUR'}
+    <StyledButton
+      onClick={() => dispatch(setCurrency(currency === 'PLN' ? 'EUR' : 'PLN'))}
+    >
+      {currency === 'PLN' ? 'PLN' : 'EUR'}
     </StyledButton>
   );
 };

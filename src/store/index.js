@@ -8,6 +8,7 @@ const initialState = {
   converter: 0,
   loading: false,
   isFormValid: true,
+  currency: 'PLN',
 };
 
 const trackerSlice = createSlice({
@@ -48,6 +49,9 @@ const trackerSlice = createSlice({
       const list = state.transactions;
       state.balance = list.reduce((value, item) => value + item.amountPLN, 0);
     },
+    setCurrency(state, action) {
+      state.currency = action.payload;
+    },
   },
 });
 
@@ -63,6 +67,7 @@ export const {
   setIsFormValid,
   setTransactions,
   setBalance,
+  setCurrency,
 } = trackerSlice.actions;
 export default store;
 
